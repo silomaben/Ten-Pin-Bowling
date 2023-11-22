@@ -4,16 +4,18 @@ class TenPinGame{
         this.rolls = rolls.split(" ");
 
         console.log(this.rolls);
-        console.log(this.rolls.length);
+        console.log(this.getScore());
         
     }
 
     getScore(): number {
         let turns:string[] = [];
+        let score : number = 0;
         
         for (let i = 0; i < this.rolls.length; i++){
             const roll = this.rolls[i];
-            let score : number = 0;
+            console.log(`this is  : ${parseInt(this.rolls[i][0], 10)}`);
+
 
             if (roll==='x'){
                 score += 10;
@@ -25,6 +27,8 @@ class TenPinGame{
                         score +=10
                     } else {
                         score +=  parseInt(this.rolls[i + 2][0], 10);
+                        console.log(`this is  : ${parseInt(this.rolls[i + 2][0], 10)}`);
+                        
                     }
                 } else {
                     if(!this.rolls[i + 1][0].includes('-')){
@@ -36,21 +40,36 @@ class TenPinGame{
                 }
 
             }else if (roll.includes('/') ){
-                if(roll)
-                if(this.rolls[i+1].includes('/') || this.rolls[i+1].includes('x')){
-                    score += 10
-                }else{
-                    score +=  parseInt(this.rolls[i + 1][0], 10);
+                score += 10;
+                if(this.rolls[i+1]){
+                    if(this.rolls[i+1].includes('/') || this.rolls[i+1].includes('x')){
+                        score += 10
+                    }else{
+                        score +=  parseInt(this.rolls[i + 1][0], 10);
+                    }
                 }
-                const turnScore = 10
-                turns.push(10)
-            }
+            }else {
+
+                if(this.rolls[i + 1]){
+                    
+                if(!this.rolls[i + 1][0].includes('-')){
+                    score += parseInt(this.rolls[i+1][0], 10)
+                }
+                if(this.rolls[i + 1][1]){
+                    if(!this.rolls[i + 1][1].includes('-')){
+                        score += parseInt(this.rolls[i+1][1], 10)
+                    }
+                }
+                }
+            } 
+            console.log(`${i}  ${score}`);
+            
         }
 
-        return 9
+        return score
     }
 
 
 }
 
-let we = new TenPinGame('5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5')
+let we = new TenPinGame('X X X X X X X X X X X X');
