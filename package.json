@@ -4,16 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc --watch"
+    "start": "tsc --watch",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^29.5.10",
+    "@types/node": "^20.9.4",
     "@types/readline-sync": "^1.4.7",
     "typescript": "^5.3.2"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.23.3",
     "readline-sync": "^1.4.10"
   }
 }
